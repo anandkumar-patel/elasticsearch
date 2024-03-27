@@ -1,0 +1,108 @@
+GET _cluster/health
+GET /_cat/nodes?v
+GET /_cat/shards?v
+
+#index creation
+PUT student
+
+#index deletion
+DELETE student
+
+
+# providing setting in index
+PUT student
+{
+    "settings": {
+   	 "number_of_shards":2,
+   	 "number_of_replicas":2
+    }
+}
+
+
+# providing documents in index
+POST student/_doc
+{
+    "name":"ananya",
+    "age":24
+}
+
+# providing documents in index with custom id
+POST student/_doc/1234
+{
+    "name":"ananya",
+    "age":24
+}
+
+# deleting the document with id
+DELETE student/_doc/1234
+
+# get the document with id
+GET student/_doc/1234
+
+
+#search
+GET student/_search
+{
+    "query":{
+   	 "match_all":{}
+    }
+}
+
+# update index with custom id add new field
+POST student/_update/1234
+{
+    "doc":{
+   	 "cast":"patel"
+    }
+}
+
+
+
+# update
+POST student/_update/1234
+{
+    "script": {
+   	 "source": "ctx._source.age=params.new_age",
+   	 "params": {
+   		 "new_age": 10
+   	 }
+    }
+}
+
+
+# update
+POST student/_update/1234
+{
+    "script": {
+   	 "source": """
+   		 if(ctx._source.age<=0) {
+   			 ctx.op = "delete";
+   		 } else {
+   			 ctx._source.age--;
+   		 }
+   	 """
+    }
+}
+
+
+# UPSERT
+POST student/_update/1234
+{
+    "script": {
+   	 "source": "ctx._source.age++"
+    },
+    "upsert": {
+   	 "name": "surya",
+   	 "age": 2,
+   	 "cast": "patel"
+    }
+}
+
+
+
+#update
+PUT student/_doc/1234
+{
+    "name": "ram",
+    "age": 1
+}

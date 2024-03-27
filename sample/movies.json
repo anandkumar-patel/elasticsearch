@@ -1,0 +1,76 @@
+PUT /movies
+{
+  "mappings": {
+    "properties": {
+      "name": { "type": "text" },
+      "actors": { "type": "keyword" },
+      "director": { "type": "text" },
+      "rating": { "type": "float" },
+      "genre": { "type": "keyword" },
+      "budget": { "type": "long" },
+      "box_office": { "type": "long" },
+      "length": { "type": "integer" },
+      "release_year": { "type": "integer" }
+    }
+  }
+}
+
+POST movies/_doc/1
+{ "name": "Inception", "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"], "director": "Christopher Nolan", "rating": 8.8, "genre": "Sci-Fi", "budget": 160000000, "box_office": 828300000, "length": 148, "release_year": 2010 }
+
+POST movies/_doc/2
+{ "name": "The Shawshank Redemption", "actors": ["Tim Robbins", "Morgan Freeman"], "director": "Frank Darabont", "rating": 9.3, "genre": "Drama", "budget": 25000000, "box_office": 28699976, "length": 142, "release_year": 1994 }
+
+POST movies/_doc/3
+{ "name": "The Godfather", "actors": ["Marlon Brando", "Al Pacino", "James Caan"], "director": "Francis Ford Coppola", "rating": 9.2, "genre": "Crime", "budget": 6000000, "box_office": 286000000, "length": 175, "release_year": 1972 }
+
+POST movies/_doc/4
+{ "name": "The Dark Knight", "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"], "director": "Christopher Nolan", "rating": 9.0, "genre": "Action", "budget": 185000000, "box_office": 1004558444, "length": 152, "release_year": 2008 }
+
+POST movies/_doc/5
+{ "name": "Pulp Fiction", "actors": ["John Travolta", "Uma Thurman", "Samuel L. Jackson"], "director": "Quentin Tarantino", "rating": 8.9, "genre": "Crime", "budget": 8000000, "box_office": 213928762, "length": 154, "release_year": 1994 }
+
+POST movies/_doc/6
+{ "name": "Schindler's List", "actors": ["Liam Neeson", "Ben Kingsley", "Ralph Fiennes"], "director": "Steven Spielberg", "rating": 8.9, "genre": "Biography", "budget": 22000000, "box_office": 321306305, "length": 195, "release_year": 1993 }
+
+POST movies/_doc/7
+{ "name": "Forrest Gump", "actors": ["Tom Hanks", "Robin Wright", "Gary Sinise"], "director": "Robert Zemeckis", "rating": 8.8, "genre": "Romance", "budget": 55000000, "box_office": 677387716, "length": 142, "release_year": 1994 }
+
+POST movies/_doc/8
+{ "name": "The Lord of the Rings: The Return of the King", "actors": ["Elijah Wood", "Viggo Mortensen", "Ian McKellen"], "director": "Peter Jackson", "rating": 8.9, "genre": "Fantasy", "budget": 94000000, "box_office": 1141403341, "length": 201, "release_year": 2003 }
+
+POST movies/_doc/9
+{ "name": "Fight Club", "actors": ["Brad Pitt", "Edward Norton", "Meat Loaf"], "director": "David Fincher", "rating": 8.8, "genre": "Drama", "budget": 63000000, "box_office": 100853753, "length": 139, "release_year": 1999 }
+
+POST movies/_doc/10
+{ "name": "The Matrix", "actors": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"], "director": "Lana Wachowski", "rating": 8.7, "genre": "Sci-Fi", "budget": 63000000, "box_office": 463517383, "length": 136, "release_year": 1999 }
+
+POST movies/_doc/11
+{ "name": "Gladiator", "actors": ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"], "director": "Ridley Scott", "rating": 8.5, "genre": "Action", "budget": 103000000, "box_office": 457640427, "length": 155, "release_year": 2000 }
+
+POST movies/_doc/12
+{ "name": "The Silence of the Lambs", "actors": ["Jodie Foster", "Anthony Hopkins", "Scott Glenn"], "director": "Jonathan Demme", "rating": 8.6, "genre": "Crime", "budget": 19000000, "box_office": 272742922, "length": 118, "release_year": 1991 }
+
+POST movies/_doc/13
+{ "name": "The Departed", "actors": ["Leonardo DiCaprio", "Matt Damon", "Jack Nicholson"], "director": "Martin Scorsese", "rating": 8.5, "genre": "Crime", "budget": 90000000, "box_office": 291465034, "length": 151, "release_year": 2006 }
+
+POST movies/_doc/14
+{ "name": "Saving Private Ryan", "actors": ["Tom Hanks", "Matt Damon", "Tom Sizemore"], "director": "Steven Spielberg", "rating": 8.6, "genre": "Drama", "budget": 70000000, "box_office": 482349603, "length": 169, "release_year": 1998 }
+
+POST movies/_doc/15
+{ "name": "Goodfellas", "actors": ["Robert De Niro", "Ray Liotta", "Joe Pesci"], "director": "Martin Scorsese", "rating": 8.7, "genre": "Biography", "budget": 25000000, "box_office": 46836220, "length": 146, "release_year": 1990 }
+
+POST movies/_doc/16
+{ "name": "The Green Mile", "actors": ["Tom Hanks", "Michael Clarke Duncan", "David Morse"], "director": "Frank Darabont", "rating": 8.6, "genre": "Crime", "budget": 60000000, "box_office": 286801374, "length": 189, "release_year": 1999 }
+
+POST movies/_doc/17
+{ "name": "The Prestige", "actors": ["Christian Bale", "Hugh Jackman", "Scarlett Johansson"], "director": "Christopher Nolan", "rating": 8.5, "genre": "Mystery", "budget": 40000000, "box_office": 109676311, "length": 130, "release_year": 2006 }
+
+POST movies/_doc/18
+{ "name": "Inglourious Basterds", "actors": ["Brad Pitt", "Diane Kruger", "Eli Roth"], "director": "Quentin Tarantino", "rating": 8.3, "genre": "Adventure", "budget": 70000000, "box_office": 321455689, "length": 153, "release_year": 2009 }
+
+POST movies/_doc/19
+{ "name": "The Usual Suspects", "actors": ["Kevin Spacey", "Gabriel Byrne", "Chazz Palminteri"], "director": "Bryan Singer", "rating": 8.5, "genre": "Mystery", "budget": 6000000, "box_office": 34447458, "length": 106, "release_year": 1995 }
+
+POST movies/_doc/20
+{ "name": "The Sixth Sense", "actors": ["Bruce Willis", "Haley Joel Osment", "Toni Collette"], "director": "M. Night Shyamalan", "rating": 8.1, "genre": "Drama", "budget": 40000000, "box_office": 672806292, "length": 107, "release_year": 1999 }

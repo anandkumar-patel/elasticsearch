@@ -1,0 +1,85 @@
+PUT students/
+{
+  "mappings":{
+    "properties" : {
+      "name" : {
+        "type" : "text"
+      },
+      "bio" : {
+        "type" : "text"
+      },
+      "hobbies": {
+        "type" : "keyword"
+      },
+      "dob" : {
+        "type" : "date"
+      },
+      "bag" : {
+        "type" : "nested",
+        "properties" : {
+          "name" : {
+            "type" : "keyword"
+          },
+          "quantity" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+POST students/_doc/1
+{
+  "name": "Anand Patel",
+  "bio": "Computer Science student with a passion for programming and aspiring.",
+  "hobbies": ["reading", "coding", "swimming","drawing"],
+  "dob": "1986-06-25",
+  "bag": [
+    {"name": "book", "quantity": 1},
+    {"name": "laptop", "quantity": 1},
+    {"name": "notebook", "quantity": 3},
+    {"name": "pen", "quantity": 5}
+  ]
+}
+
+POST students/_doc/2
+{
+  "name": "brijesh Singh",
+  "bio": "Mathematics enthusiast lover And passion for exploring the beauty of numbers.",
+  "hobbies": ["puzzles", "mathematics", "drawing"],
+  "dob": "1998-03-22",
+  "bag": [
+    {"name": "calculator", "quantity": 1},
+    {"name": "sketchbook", "quantity": 2},
+    {"name": "notebook", "quantity": 13},
+    {"name": "pencil", "quantity": 10}
+  ]
+}
+
+POST students/_doc/3
+{
+  "name": "Yash Yadav",
+  "bio": "History and literature lover student, aspiring to be a beautyfull writer. Enthusiast",
+  "hobbies": ["reading", "writing", "traveling", "puzzles"],
+  "dob": "1997-11-05",
+  "bag": [
+    {"name": "book", "quantity": 8},
+    {"name": "journal", "quantity": 2},
+    {"name": "map", "quantity": 1},
+    {"name": "pencil", "quantity": 20}
+  ]
+}
+
+POST students/_doc/4
+{
+  "name": "Udham Singh notebook",
+  "bio": "Physics major with a curiosity for the fundamental principles of the universe.",
+  "dob": "1996-04-10",
+  "bag": [
+    {"name": "calculator", "quantity": 1},
+    {"name": "notebook", "quantity": 2},
+    {"name": "pen", "quantity": 5}
+  ]
+}

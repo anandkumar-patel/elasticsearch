@@ -1,0 +1,134 @@
+PUT school
+{
+  "mappings": {
+    "properties": {
+      "my_join_field": {
+        "type": "join",
+        "relations": {
+          "teacher" : "student"
+        }
+      }
+    }
+  }
+}
+
+GET school/_mapping
+
+put school/_doc/1
+{
+  "name":"riya singh",
+  "subject" : "english",
+  "my_join_field" : "teacher"
+}
+
+put school/_doc/2
+{
+  "name":"vivek yadav",
+  "subject": "social science",
+  "my_join_field" : "teacher"
+}
+
+put school/_doc/3
+{
+  "name":"pradeep patel",
+  "subject": "mathematics",
+  "my_join_field" : "teacher"
+}
+
+
+GET school/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+put school/_doc/4?routing=1
+{
+  "name":"richa",
+  "age":5,
+  "class" : 1,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 1
+  }
+}
+put school/_doc/5?routing=1
+{
+  "name":"abhi",
+  "age":6,
+  "class" : 1,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 1
+  }
+}
+put school/_doc/6?routing=1
+{
+  "name":"brijesh",
+  "age":8,
+  "class" : 3,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 1
+  }
+}
+
+put school/_doc/7?routing=2
+{
+  "name":"ananya",
+  "age":5,
+  "class" : 1,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 2
+  }
+}
+
+put school/_doc/8?routing=2
+{
+  "name":"priya",
+  "age":15,
+  "class" : 7,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 2
+  }
+}
+
+put school/_doc/9?routing=3
+{
+  "name":"parul",
+  "age":5,
+  "class" : 2,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 3
+  }
+}
+
+put school/_doc/10?routing=3
+{
+  "name":"anju",
+  "age":13,
+  "class" : 5,
+  "my_join_field" : {
+    "name" : "student",
+    "parent" : 3
+  }
+}
+
+
+put school/_doc/11
+{
+  "name":"Santosh Singh",
+  "role" : "manager",
+  "age":70
+}
+
+put school/_doc/12
+{
+  "name":"Vinay Singh",
+  "role" : "founder",
+  "age":37
+}

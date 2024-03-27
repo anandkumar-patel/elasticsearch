@@ -1,0 +1,15 @@
+#Create Index:
+PUT /my_index
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  }
+}
+#Check Index Existence:
+HEAD /my_index
+
+#Delete Index:DELETE /my_index
+
+#list all indices:
+GET _cat/indices?v

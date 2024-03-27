@@ -1,0 +1,79 @@
+# match
+# bio having passion  term : case-insensitive
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": "passion"
+    }
+  }
+}
+
+
+# bio having both passion and programming term 
+# case-insensitive 
+# term order doesn't matter
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": {
+        "query": "programming passion",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+
+# bio having  any passion or programming term 
+# case-insensitive 
+# term order doesn't matter
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": {
+        "query": "programming passion",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": {
+        "query": "programing",
+        "fuzziness": 1
+      }
+    }
+  }
+}
+
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": {
+        "query": "programing",
+        "analyzer": ""
+      }
+    }
+  }
+}
+
+GET students/_search
+{
+  "query": {
+    "match": {
+      "bio": {
+        "query": "programing",
+        "boost": 2
+      }
+    }
+  }
+}

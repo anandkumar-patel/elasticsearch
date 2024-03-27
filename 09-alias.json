@@ -1,0 +1,145 @@
+#======= use case 1 ============
+PUT teachers/_doc/1
+{
+  "name":"geeta",
+  "age": 20
+}
+
+PUT students/_doc/1
+{
+  "name":"anand",
+  "age": 10
+}
+ 
+# creating alias for index teachers
+POST _aliases 
+ {
+   "actions": [
+     {
+       "add": {
+         "index": "teachers",
+         "alias": "school"
+       }   
+     }
+   ]
+  }
+
+# creating alias for index students
+POST _aliases 
+ {
+   "actions": [
+     {
+       "add": {
+         "index": "students",
+         "alias": "school"
+       }   
+     }
+   ]
+ }
+ 
+# searching through alias name
+# it will list from both document
+GET school/_search
+ {
+   "query": {
+     "match_all": {}
+   }
+ }
+ 
+#======= use case 2 ============
+# here index is created using wildcard for index
+PUT student_class_1/_doc/1
+{
+  "name":"ram",
+  "age": 20
+}
+
+PUT student_class_2/_doc/2
+{
+  "name":"nand",
+  "age": 21
+}
+ 
+ POST _aliases 
+ {
+   "actions": [
+     {
+       "add": {
+         "index": "student_class_*",
+         "alias": "student_alias",
+         "filter": { }
+       }
+     }
+   ]
+ }
+ 
+ GET student_alias/_search 
+ {
+   "query": {
+     "match_all": {}
+   }
+ }
+
+# getting all alias mapped to a index 
+GET student_class_1/_alias
+ 
+ 
+#======= use case 3 ============
+# for insertion through alias name we need to map 
+# "is_write_index" :true
+PUT student_class_1/_doc/1
+{
+  "name":"ram",
+  "age": 20
+}
+
+PUT student_class_2/_doc/2
+{
+  "name":"nand",
+  "age": 21
+}
+ 
+ POST _aliases 
+ {
+   "actions": [
+     {
+       "add": {
+         "index": "student_class_1",
+         "alias": "student_alias"
+       }
+     }
+   ]
+ }
+ 
+  POST _aliases 
+ {
+   "actions": [
+     {
+       "add": {
+         "index": "student_class_2",
+         "alias": "student_alias",
+         "is_write_index" :true
+       }
+     }
+   ]
+ }
+ 
+ GET student_alias/_search 
+ {
+   "query": {
+     "match_all": {}
+   }
+ }
+ 
+ PUT student_alias/_doc/3
+ {
+   "name":"karn",
+   "age":22
+ }
+ 
+ GET student_class_2/_search 
+ {
+   "query": {
+     "match_all": {}
+   }
+ }

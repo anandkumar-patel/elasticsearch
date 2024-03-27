@@ -1,0 +1,98 @@
+
+GET school/_search
+{
+  "query": {
+    "match": {
+      "my_join_field": "teacher"
+    }
+  }
+}
+
+GET school/_search
+{
+  "query": {
+    "match": {
+      "my_join_field": "student"
+    }
+  }
+}
+
+# querying child by parent
+GET school/_search
+{
+  "query": {
+    "parent_id" : {
+      "id" : 2,
+      "type": "student"
+    }
+  }
+}
+
+
+#list all child(student) whose parent type is (teacher)  and name is "pradeep"
+GET school/_search
+{
+  "query": {
+    "has_parent": {
+      "parent_type": "teacher",
+      "query": {
+        "match": {
+          "name": "pradeep"
+        }
+      }
+    }
+  }
+}
+ 
+# adding score of child to parent
+GET school/_search
+{
+  "query": {
+    "has_parent": {
+      "parent_type": "teacher",
+      "score" : true,
+      "query": {
+        "match": {
+          "name": "riya singh"
+        }
+      }
+    }
+  }
+}
+
+
+
+# querying parent by child
+
+GET school/_search
+{
+  "query": {
+    "has_child": {
+      "type": "student",
+      "query": {
+        "match": {
+          "name": "ananya patel"
+        }
+      }
+    }
+  }
+}
+
+# use of min and max children
+GET school/_search
+{
+  "query": {
+    "has_child": {
+      "type": "student",
+      "min_children": 1,
+      "max_children": 10, 
+      "query": {
+        "range": {
+          "age": {
+            "gte": 7
+          }
+        }
+      }
+    }
+  }
+}

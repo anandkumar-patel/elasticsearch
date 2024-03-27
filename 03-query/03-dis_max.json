@@ -1,0 +1,71 @@
+GET students/_search
+{
+  "query": {
+    "dis_max": {
+      "tie_breaker": 0.7,
+      "boost": 1.2,
+      "queries": [
+        { "match": { "name": "singh" } },
+        { "match": { "bio": "programming" } }
+        ]
+    }
+  }
+}
+
+# multi-field search with variable boosts (now check the _score with above query)
+GET students/_search
+{
+  "query": {
+    "dis_max": {
+      "tie_breaker": 0.7,
+      "boost": 1.2,
+      "queries": [
+        { "match": { "name": { "query": "singh", "boost": 3 } } },
+        { "match": { "bio": { "query": "programming", "boost": 1 } } }
+      ]
+    }
+  }
+}
+
+# combining different types of queries (text and term)
+GET students/_search
+{
+  "query": {
+    "dis_max": {
+      "tie_breaker": 0.7,
+      "boost": 1.2,
+      "queries": [
+        { "match": { "name": "singh" } },
+        { "term": { "hobbies": "puzzles" } }
+        ]
+    }
+  }
+}
+
+# boosting nested documents:
+GET students/_search
+{
+  "query": {
+    "dis_max": {
+      "tie_breaker": 0.7,
+      "boost": 1.2,
+      "queries": [
+        { "nested": { "path": "bag", "query": { "match": { "bag.name": "book" } }, "boost": 2 } },
+        { "nested": { "path": "bag", "query": { "match": { "bag.name": "pen" } }, "boost": 1 } }
+      ]
+    }
+  }
+}
+
+# fuzzy searching with different boosts:
+GET students/_search
+{
+  "query": {
+    "dis_max": {
+      "queries": [
+        { "fuzzy": { "name": { "value": "Singh", "fuzziness": 1 } } },
+        { "fuzzy": { "bio": { "value": "computer", "fuzziness": 2 } } }
+      ]
+    }
+  }
+}

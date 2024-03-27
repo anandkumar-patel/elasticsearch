@@ -1,0 +1,22 @@
+
+
+# querying now
+# list the company having employee name richa
+GET companies/_search
+{
+  "query": {
+    "has_child": {
+      "type": "dept",
+      "query": {
+        "has_child": {
+          "type": "emp",
+          "query": {
+            "match": {
+              "name": "richa"
+            }
+          }
+        }
+      }
+    }
+  }
+}

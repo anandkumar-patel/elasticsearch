@@ -1,0 +1,163 @@
+# multi level  relations
+# company  ->dept -> emp
+# company -> client
+PUT companies
+{
+  "mappings": {
+    "properties": {
+      "join_field": {
+        "type": "join",
+        "relations": {
+          "company" : ["dept","client"],
+          "dept" : "emp"
+        }
+      }
+    }
+  }
+}
+
+GET companies/_mapping
+
+put companies/_doc/1
+{
+  "name":"apple Inc",
+  "join_field" : "company"
+}
+
+put companies/_doc/2
+{
+  "name":"google inc",
+  "join_field" : "company"
+}
+
+GET companies/_search
+{
+  "query": {
+    "match": {
+      "join_field": "company"
+    }
+  }
+}
+
+put companies/_doc/3?routing=1
+{
+  "name":"IT",
+  "join_field" : {
+    "name" : "dept",
+    "parent" : 1
+  }
+}
+
+put companies/_doc/4?routing=1
+{
+  "name":"HR",
+  "join_field" : {
+    "name" : "dept",
+    "parent" : 1
+  }
+}
+
+put companies/_doc/5?routing=2
+{
+  "name":"HR",
+  "join_field" : {
+    "name" : "dept",
+    "parent" : 2
+  }
+}
+
+GET companies/_search
+{
+  "query": {
+    "match": {
+      "join_field": "dept"
+    }
+  }
+}
+
+put companies/_doc/6?routing=1
+{
+  "name":"richa",
+  "age":32,
+  "join_field" : {
+    "name" : "emp",
+    "parent" : 4
+  }
+}
+
+put companies/_doc/7?routing=1
+{
+  "name":"Som Shekhar",
+  "age":47,
+  "join_field" : {
+    "name" : "emp",
+    "parent" :3 
+  }
+}
+
+put companies/_doc/8?routing=1
+{
+  "name":"khalid",
+  "age":50,
+  "join_field" : {
+    "name" : "emp",
+    "parent" : 3
+  }
+}
+
+
+put companies/_doc/9?routing=2
+{
+  "name":"Arun Goel",
+  "age":40,
+  "join_field" : {
+    "name" : "emp",
+    "parent" : 5
+  }
+}
+
+GET companies/_search
+{
+  "query": {
+    "match": {
+      "join_field": "emp"
+    }
+  }
+}
+
+
+put companies/_doc/10
+{
+  "name":"practo pvt ltd",
+  "is_public":false,
+  "no_of_emp": 100
+}
+
+# clients
+
+put companies/_doc/11?routing=1
+{
+  "name":"nokia",
+  "join_field" : {
+    "name" : "client",
+    "parent" : 1
+  }
+}
+
+put companies/_doc/12?routing=2
+{
+  "name":"facebook",
+  "join_field" : {
+    "name" : "client",
+    "parent" : 2
+  }
+}
+
+GET companies/_search
+{
+  "query": {
+    "match": {
+      "join_field": "client"
+    }
+  }
+}

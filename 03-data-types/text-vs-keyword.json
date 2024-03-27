@@ -1,0 +1,9 @@
+Elasticsearch will analyze the Text before it’s stored into the Inverted Index 
+while it won’t analyze Keyword type. 
+
+Analyzed or not analyzed will affect how it will behave when getting queried.
+
+the difference between Match Query and Term Query is that the query in 
+Match Query will get analyzed into terms first, while the query in Term Query 
+will not.
+
