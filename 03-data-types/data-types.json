@@ -3,59 +3,62 @@ PUT student
 	"mappings": {
 		"properties": {
 			"name": {
-"type": "object",
-"properties": {
-"first_name": {
-"type": "text"
-},
-"last_name": {
-"type": "text"
+				"type": "object",
+				"properties": {
+					"first_name": {
+						"type": "text"
+					},
+					"last_name": {
+						"type": "text"
+					}
+				}
+			},
+			"experience": {
+				"type": "nested",
+				"properties": {
+					"company_name": {
+						"type": "text"
+					},
+					"duration_in_month": {
+						"type": "integer"
+					},
+					"duration_in_days": {
+						"type": "long"
+					}
+				}
+			},
+			"dob": { "type": "date" },
+			"current_salary": { "type": "float" },
+			"annual_package": { "type": "double" },
+			"email": {
+				"type": "keyword"
+			},
+			"on_notice_period": {
+				"type": "boolean"
+			}
+		}
+	}
 }
-}
-},
-"experience": {
-"type": "nested",
-"properties": {
-"company_name": {
-"type": "text"
-},
-"duration_in_month": {
-"type": "integer"
-},
-"duration_in_days": {
-"type": "long"
-}
-}
-},"dob": { "type": "date" },
-"current_salary": { "type": "float" },
-"annual_package": { "type": "double" },
-"email": {
-"type": "keyword"
-},
-"on_notice_period": {
-"type": "boolean"
-}
-}
-}
-}
+
 GET student/_mapping
 PUT student/_doc/123
 {
-"name": {
-"first_name": "anand",
-"last_name" : "patel"
-},
-"experience": {
-"company_name":"practo",
-"duration_in_month": 34,
-"duration_in_days":45456333
-},
-"dob": "1986-06-25",
-"current_salary": 34568.56,
-"annual_package": 11986723.52,
-"email" : "anand@practo.com",
-"on_notice_period":true
+	"name": {
+		"first_name": "anand",
+		"last_name" : "patel"
+	},
+	"experience": {
+		"company_name":"practo",
+		"duration_in_month": 34,
+		"duration_in_days":45456333
+	},
+	"dob": "1986-06-25",
+	"current_salary": 34568.56,
+	"annual_package": 11986723.52,
+	"email" : "anand@practo.com",
+	"on_notice_period":true
 }
+
 GET student/_search
 {
 	"query": {

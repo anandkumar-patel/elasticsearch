@@ -1,20 +1,20 @@
 #Index a Document:
-POST /my_index/_doc/document_id
+POST my_index/_doc/docid01
 {
-	"field1": "value1",
-	"field2": "value2"
+  "my_name" : "Anand Patel",
+  "my_son" : "Surya Patel"
 }
 
 #Get Document:
-GET /my_index/_doc/document_id
+GET my_index/_doc/docid01
 
 #Update Document:
-POST /my_index/_update/document_id
+POST my_index/_update/docid01
 {
-	"doc": {
-		"field1": "new_value1"
-	}
+  "doc": {
+    "my_name" : "Anand Kumar Patel"
+  }
 }
 
 #Delete Document:
-DELETE /my_index/_doc/document_id
+DELETE /my_index/_doc/docid01

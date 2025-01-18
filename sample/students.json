@@ -5,6 +5,9 @@ PUT students/
       "name" : {
         "type" : "text"
       },
+      "branch" : {
+        "type" : "text"
+      },
       "bio" : {
         "type" : "text"
       },
@@ -33,6 +36,7 @@ PUT students/
 POST students/_doc/1
 {
   "name": "Anand Patel",
+  "branch": "cse",
   "bio": "Computer Science student with a passion for programming and aspiring.",
   "hobbies": ["reading", "coding", "swimming","drawing"],
   "dob": "1986-06-25",
@@ -47,6 +51,7 @@ POST students/_doc/1
 POST students/_doc/2
 {
   "name": "brijesh Singh",
+  "branch": "ece",
   "bio": "Mathematics enthusiast lover And passion for exploring the beauty of numbers.",
   "hobbies": ["puzzles", "mathematics", "drawing"],
   "dob": "1998-03-22",
@@ -61,6 +66,7 @@ POST students/_doc/2
 POST students/_doc/3
 {
   "name": "Yash Yadav",
+  "branch": "cse",
   "bio": "History and literature lover student, aspiring to be a beautyfull writer. Enthusiast",
   "hobbies": ["reading", "writing", "traveling", "puzzles"],
   "dob": "1997-11-05",
@@ -75,6 +81,7 @@ POST students/_doc/3
 POST students/_doc/4
 {
   "name": "Udham Singh notebook",
+  "branch": "ece",
   "bio": "Physics major with a curiosity for the fundamental principles of the universe.",
   "dob": "1996-04-10",
   "bag": [

@@ -9,7 +9,7 @@ PUT student
 DELETE student
 
 
-# providing setting in index
+# creating/updating student index with setting shards=2 and replica=2
 PUT student
 {
     "settings": {
@@ -19,21 +19,21 @@ PUT student
 }
 
 
-# providing documents in index
+# indexing a documents in student index
 POST student/_doc
 {
     "name":"ananya",
     "age":24
 }
 
-# providing documents in index with custom id
+# indexing a documents in index with custom document id =1234
 POST student/_doc/1234
 {
     "name":"ananya",
     "age":24
 }
 
-# deleting the document with id
+# deleting the document having document id = 1234
 DELETE student/_doc/1234
 
 # get the document with id
@@ -48,7 +48,8 @@ GET student/_search
     }
 }
 
-# update index with custom id add new field
+# adding or updating the cast field with the value patel
+# in student index having document id 1234
 POST student/_update/1234
 {
     "doc":{
@@ -58,7 +59,7 @@ POST student/_update/1234
 
 
 
-# update
+# update the age field with the value provided in the params object.
 POST student/_update/1234
 {
     "script": {
@@ -70,7 +71,7 @@ POST student/_update/1234
 }
 
 
-# update
+# conditional update 
 POST student/_update/1234
 {
     "script": {
@@ -85,7 +86,7 @@ POST student/_update/1234
 }
 
 
-# UPSERT
+# update id document exist else create new with given custom document id.
 POST student/_update/1234
 {
     "script": {
@@ -99,10 +100,17 @@ POST student/_update/1234
 }
 
 
-
-#update
-PUT student/_doc/1234
+# update/create a field using some query
+POST student/_update_by_query
 {
-    "name": "ram",
-    "age": 1
+  "script": {
+    "source": "ctx._source.school = params.school",
+    "lang": "painless",
+    "params": {
+      "school": "secondary school"
+    }
+  },
+  "query": {
+    "match_all": {}
+  }
 }
